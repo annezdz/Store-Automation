@@ -18,12 +18,7 @@ public class LoginSteps extends Base {
     public LoginSteps() throws IOException {
     }
 
-    @Then("^I login successfully$")
-    public void i_login_successfully() throws InterruptedException {
-//        loginPage.getLoginButtom().click();
-        Assert.assertTrue(accountPage.getMyAccountLabel().isDisplayed());
-        quit();
-    }
+
 
     @And("^input a password$")
     public void input_a_password() throws InterruptedException {

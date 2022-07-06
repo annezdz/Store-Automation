@@ -8,8 +8,21 @@ Feature: Login Account
     Scenario: Login Successfully
       And click on "Login"
       And input a email already registered in "Login" page
-#      And input a password
-#      And click on "LoginButtom"
-      Then I login successfully
+      And click on "Button"
+      Then the login status is "success"
+
+    Scenario Outline: Forgotten Password
+      And click on "Login"
+      And click on "Forgotten"
+      And input a email already registered in "Forgotten" page
+      And click on "Continue"
+      Then the message <message> is displayed
+
+      Examples:
+        | message                                        |
+        |  An email with a confirmation link has been sent your email address. |
+
+
+
 
 

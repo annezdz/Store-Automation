@@ -25,6 +25,8 @@ public class AccountSteps extends Base {
     protected HomePage homePage = new HomePage(driver);
     protected RegisterPage registerPage = new RegisterPage(driver);
     protected LoginPage loginPage = new LoginPage(driver);
+    protected AccountPage accountPage = new AccountPage(driver);
+    protected ForgottenPage forgottenPage = new ForgottenPage(driver);
 
     public AccountSteps() throws IOException {
     }
@@ -80,11 +82,26 @@ public class AccountSteps extends Base {
                 System.out.println("CHEGAMOS NO LOGIN");
                 break;
             }
-//            case "LoginButtom" -> {
-//                Thread.sleep(3000);
-//                loginPage.getLoginButtom().click();
-//                break;
-//            }
+            case "Button" -> {
+                Thread.sleep(3000);
+                loginPage.getLoginButtom();
+                break;
+            }
+            case "Forgotten" -> {
+                loginPage.getForgottenButton().click();
+                break;
+            }
+            case "Continue" -> {
+                forgottenPage.getContinueButton().click();
+            }
+        }
+    }
+
+    @Then("^the login status is \"([^\"]*)\"$")
+    public void o_login_ocorreu_com_sucesso(String status) {
+        if (status.equals("success")) {
+            Assert.assertTrue(accountPage.getConfirmLogin());
+//            System.out.println(accountPage.getConfirmLogin().getText());
         }
     }
 }

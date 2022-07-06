@@ -62,8 +62,8 @@ public class RegisterPage {
         return driver.findElement(messageCreatedAccount).getText();
     }
 
-    public String getAlreadyRegisteredMessage() {
-        return driver.findElement(messageAlreadyRegisteredMessage).getText();
+    public boolean getAlreadyRegisteredMessage() {
+        return driver.findElement(messageAlreadyRegisteredMessage).isDisplayed();
     }
 
     public WebElement getContinueButtom() {

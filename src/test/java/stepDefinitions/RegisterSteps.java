@@ -7,6 +7,7 @@ import io.cucumber.junit.Cucumber;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
 import pages.Base;
+import pages.ForgottenPage;
 import pages.LoginPage;
 import pages.RegisterPage;
 import utils.Utils;
@@ -19,12 +20,14 @@ import java.time.LocalDateTime;
 public class RegisterSteps extends Base {
 
     private static final String existentEmail = "annezdz@hotmail.com";
+    private static final String existentPassword = "123456";
+
 
     private static String emailRandom;
 
     protected RegisterPage registerPage = new RegisterPage(driver);
     protected LoginPage loginPage = new LoginPage(driver);
-
+    protected ForgottenPage forgottenPage = new ForgottenPage(driver);
 
     public RegisterSteps() throws IOException {
     }
@@ -59,7 +62,11 @@ public class RegisterSteps extends Base {
             case "Login" : {
                 Thread.sleep(3000);
 
-                loginPage.loginUser(existentEmail, "123456");
+                loginPage.loginUser(existentEmail, existentPassword);
+                break;
+            }
+            case "Forgotten": {
+                forgottenPage.getEmailField().sendKeys(existentEmail);
                 break;
             }
         }
@@ -67,8 +74,17 @@ public class RegisterSteps extends Base {
 
     @Then("^the message (.+) is displayed$")
     public void the_message_is_displayed(String message) {
-        Assert.assertEquals(message,registerPage.getAlreadyRegisteredMessage());
+        switch (message) {
+            case "Warning: E-Mail Address is already registered!": {
+                Assert.assertTrue(registerPage.getAlreadyRegisteredMessage());
+                break;
+            }
+            case "An email with a confirmation link has been sent your email address.": {
+                Assert.assertTrue(forgottenPage.getEmailMessage());
+                break;
+            }
+        }
+//        Assert.assertEquals(message,registerPage.getAlreadyRegisteredMessage());
         driver.close();
     }
-
 }

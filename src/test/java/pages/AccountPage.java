@@ -15,11 +15,11 @@ public class AccountPage   {
         this.driver = driver;
     }
 
-    private final By editAccountLabel = By.xpath("//a[normalize-space()='Edit your account information']");
+    private final By editAccountLabel = By.cssSelector("body > div:nth-child(4) > div:nth-child(2) > div:nth-child(1) > ul:nth-child(2) > li:nth-child(2) > a:nth-child(1)");
 
-    public WebElement getMyAccountLabel() {
-        return driver.findElement(editAccountLabel);
-    }
+   public boolean getConfirmLogin() {
+       return driver.findElement(editAccountLabel).isDisplayed();
+   }
 
 
 

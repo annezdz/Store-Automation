@@ -3,6 +3,7 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class LoginPage {
 
@@ -15,11 +16,13 @@ public class LoginPage {
     private final By inputEmail = By.cssSelector("#input-email");
     private final By inputPassword = By.cssSelector("#input-password");
     private final By loginButton = By.xpath("//input[@value='Login']");
+    private final By forgottenButton = By.cssSelector("div[class='form-group'] a");
+
+
 
     public void loginUser(String user, String password) throws InterruptedException {
          driver.findElement(inputEmail).sendKeys(user);
          driver.findElement(inputPassword).sendKeys(password);
-         driver.findElement(loginButton).click();
         Thread.sleep(3000);
 
     }
@@ -28,7 +31,11 @@ public class LoginPage {
 //        return driver.findElement(inputPassword);
 //    }
 
-//    public WebElement getLoginButtom() {
-//        return driver.findElement(loginButton);
-//    }
+    public void getLoginButtom() {
+        driver.findElement(loginButton).click();
+    }
+
+    public WebElement getForgottenButton() {
+        return driver.findElement(forgottenButton);
+    }
 }

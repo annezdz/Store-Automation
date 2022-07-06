@@ -12,9 +12,5 @@ import pages.Base;
         glue="stepDefinitions")
 public class AccountRunner {
 
-//    @After
-//    public void tearDown() {
-//        System.out.println("Close browser");
-//        Base.quit();
-//    }
+
 }
