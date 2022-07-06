@@ -1,4 +1,4 @@
-Feature: Create Account Testing
+Feature: Create Account
 
   Background: Opening browser and acessing My Account
       Given I initialize the browser with Chrome
@@ -21,7 +21,7 @@ Feature: Create Account Testing
     And click on "Register"
     And I go to "Register Account" webpage
     When I set information to create a user
-    And input a email already registered
+    And input a email already registered in "Register" page
     Then the message <message> is displayed
 
     Examples:

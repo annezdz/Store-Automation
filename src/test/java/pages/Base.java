@@ -37,7 +37,6 @@ public class Base  {
     }
 
 
-
     public Base() throws IOException {
 //        initialize();
         initialize();

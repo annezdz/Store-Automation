@@ -15,15 +15,14 @@ public class AccountPage   {
         this.driver = driver;
     }
 
-    private final By myAccount = By.cssSelector("a[title='My Account'] span[class='hidden-xs hidden-sm hidden-md']");
-    private final By register = By.xpath("//a[normalize-space()='Register']");
+    private final By editAccountLabel = By.xpath("//a[normalize-space()='Edit your account information']");
 
-    public WebElement getMyAccount() {
-        return driver.findElement(myAccount);
+    public WebElement getMyAccountLabel() {
+        return driver.findElement(editAccountLabel);
     }
 
-    public RegisterPage getRegister() {
-        driver.findElement(register).click();
-        return new RegisterPage(driver);
-    }
+
+
+
+
 }

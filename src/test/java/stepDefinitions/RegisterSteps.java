@@ -7,6 +7,7 @@ import io.cucumber.junit.Cucumber;
 import org.junit.Assert;
 import org.junit.runner.RunWith;
 import pages.Base;
+import pages.LoginPage;
 import pages.RegisterPage;
 import utils.Utils;
 
@@ -15,13 +16,15 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @RunWith(Cucumber.class)
-public class RegisterSteps<emailCreated> extends Base {
+public class RegisterSteps extends Base {
 
     private static final String existentEmail = "annezdz@hotmail.com";
 
     private static String emailRandom;
 
     protected RegisterPage registerPage = new RegisterPage(driver);
+    protected LoginPage loginPage = new LoginPage(driver);
+
 
     public RegisterSteps() throws IOException {
     }
@@ -43,13 +46,23 @@ public class RegisterSteps<emailCreated> extends Base {
     }
 
 
-    @And("^input a email already registered$")
-    public void input_a_email_already_registered() throws InterruptedException {
-        registerPage.createUser(existentEmail);
-        Thread.sleep(3000);
-        System.out.println(existentEmail);
-        registerPage.getContinueButtom().click();
+    @And("^input a email already registered in \"([^\"]*)\" page$")
+    public void input_a_email_already_registered(String page) throws InterruptedException {
+        switch (page) {
+            case "Register" : {
+                registerPage.createUser(existentEmail);
+                Thread.sleep(3000);
+                System.out.println(existentEmail);
+                registerPage.getContinueButtom().click();
+                break;
+            }
+            case "Login" : {
+                Thread.sleep(3000);
 
+                loginPage.loginUser(existentEmail, "123456");
+                break;
+            }
+        }
     }
 
     @Then("^the message (.+) is displayed$")
